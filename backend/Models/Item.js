@@ -11,7 +11,6 @@ const ItemSchema = new Schema({
     name:{
         type:String,
         required:true,
-        
     },
     description:{
         type: String,
@@ -32,7 +31,10 @@ const ItemSchema = new Schema({
     category:{
         type:String,
         required:true,
-
+    },
+    soldPrice:{
+        type:Number,
+        default:0
     },
     date:{
         type:Date,
@@ -42,4 +44,5 @@ const ItemSchema = new Schema({
 })
 
 const Item = mongoose.model('item',ItemSchema)
-module.exports(Item)
+
+module.exports = Item;
