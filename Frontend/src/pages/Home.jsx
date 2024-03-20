@@ -1,21 +1,24 @@
 import React,{ useEffect, useState }  from 'react'
 import {useNavigate} from 'react-router-dom'
+import Header from '../components/Header'
+import Hero from '../components/Hero'
+import Items from '../components/Items'
+import Footer from '../components/Footer'
 
 const Home = () => {
-  const [inventoryToken, setInventoryToken] = useState(null);
   const navigate = useNavigate()
   useEffect(() => {
     let token = localStorage.getItem("inventoryToken");
-    if (token) {
-      setInventoryToken(token);
-    }
-    if(!inventoryToken){
+    if (!token) {
       navigate("/login")
     }
   },[]);
   return (
     <div>
-      Home Page
+      <Header/>
+      <Hero/>
+      <Items/>
+      <Footer/>
     </div>
   )
 }
