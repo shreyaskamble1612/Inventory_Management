@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
+import { Popup } from "reactjs-popup";
+import AddItem from "./AddItem";
+import IncreaseQuantity from "./IncreaseQuantity";
+import DecreaseQuantity from "./DecreaseQuantity";
+import itemContext from "../Context/ItemContext";
+
 
 const Items = () => {
-  const baseurl = "http://localhost:5000/api/";
-  const [searchTerm, setSearchTerm] = useState("");
-  const [items, setItems] = useState([]);
 
+  const context = useContext(itemContext)
+  const {addItem,getItems,items} = context
   const [searchedItems, setSearchedItems] = useState(items);
-  const handleAddItem = () => {};
 
-  const handleRemoveItem = (index) => {};
 
   const searchItems = (query) => {
     if (query.length >= 1) {
@@ -25,29 +28,10 @@ const Items = () => {
     }
   };
 
-  const getItems = async () => {
-    try {
-      const response = await fetch(baseurl + "item/getItemsByUser", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authtoken: localStorage.getItem("inventoryToken"),
-        },
-      });
 
-      const json = await response.json();
-      console.log(json);
-      if (json.success) {
-        setItems(json.items);
-        setSearchedItems(json.items);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
-    getItems();
+    setSearchedItems(items)
   }, []);
 
   return (
@@ -57,16 +41,25 @@ const Items = () => {
           type="text"
           placeholder="🔍&nbsp; &nbsp; Search..."
           onChange={(e) => {
-            searchItems(e.target.value)
+            searchItems(e.target.value);
           }}
           className="border border-gray-300 px-3 py-2 outline-blue-500 rounded-md mr-4"
         />
-        <button
-          onClick={handleAddItem}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md"
+
+        <Popup
+          trigger={
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              Add 
+            </button>
+          }
+          modal
         >
-          Add Item
-        </button>
+          {(close) => (
+            <div className="bg-blue-50 shadow-lg rounded-md border-2">
+              <AddItem close={close} />
+            </div>
+          )}
+        </Popup>
       </div>
       <table className="w-full border border-gray-300">
         <thead>
@@ -82,7 +75,7 @@ const Items = () => {
           </tr>
         </thead>
         <tbody>
-          {searchedItems.map((item, index) => (
+          {items.map((item, index) => (
             <tr key={index} className="text-center">
               <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
               <td className="border border-gray-300 px-4 py-2">{item.name}</td>
@@ -100,18 +93,34 @@ const Items = () => {
               </td>
               <td className="border border-gray-300 px-4 py-2">{item.sold}</td>
               <td className="border border-gray-300 px-4 py-2 flex space-x-5 justify-center">
-                <button
-                  onClick={() => handleRemoveItem(index)}
-                  className="border border-slate-400 w-8 h-8 text-lg rounded-md"
+                <Popup
+                  trigger={
+                    <button className="border border-slate-400 w-8 h-8 text-lg rounded-md">
+                      +
+                    </button>
+                  }
+                  modal
                 >
-                  +
-                </button>
-                <button
-                  onClick={() => handleRemoveItem(index)}
-                  className="border border-slate-400 w-8 h-8 text-lg rounded-md"
+                  {(close) => (
+                    <div className="bg-blue-50 shadow-lg rounded-md border-2">
+                      <IncreaseQuantity close={close} id={item._id}/>
+                    </div>
+                  )}
+                </Popup>
+                <Popup
+                  trigger={
+                    <button className="border border-slate-400 w-8 h-8 text-lg rounded-md">
+                      -
+                    </button>
+                  }
+                  modal
                 >
-                  -
-                </button>
+                  {(close) => (
+                    <div className="bg-blue-50 shadow-lg rounded-md border-2">
+                      <DecreaseQuantity  close={close} id={item._id} />
+                    </div>
+                  )}
+                </Popup>
               </td>
             </tr>
           ))}

@@ -22,7 +22,7 @@ const increaseQuantity = async(req,res)=>{
             return  res.status(404).json({error:"Item does not exist",success:false})
         }
 
-        item.quantity = item.quantity+quantity
+        item.quantity = parseInt(item.quantity)+ parseInt(quantity)
         await item.save()
         let log = await Log.create({
             user:id,
@@ -62,10 +62,10 @@ const decreaseQuantity = async(req,res)=>{
         }
 
 
-        item.sold += Math.min(quantity,item.quantity)
+        item.sold += Math.min(quantity,parseInt(item.quantity))
         item.soldPrice = item.sold*item.price
         if(item.quantity>=quantity){
-            item.quantity = item.quantity-quantity
+            item.quantity = parseInt(item.quantity)-parseInt(quantity)
         }else{
             item.quantity = 0
         }
