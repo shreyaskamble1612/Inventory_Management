@@ -38,6 +38,7 @@ const addItem = async (req, res) => {
 const getItemsByUser = async (req, res) => {
     try {
         const { id } = req.user;
+        console.log(id)
         const user = await User.findById(id);
         if (!user) {
             return res.status(404).send({ message: 'No such user', success: false })

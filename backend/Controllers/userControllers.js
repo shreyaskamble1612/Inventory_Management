@@ -5,6 +5,7 @@ const User = require("../Models/User");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
 const registerUser = async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -20,7 +21,7 @@ const registerUser = async (req, res) => {
 
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(password, salt);
-        const user = User.create({
+        const user = await User.create({
             name: name,
             email: email,
             phoneNo: phoneNo,
@@ -31,6 +32,7 @@ const registerUser = async (req, res) => {
                 id: user.id,
             },
         };
+        console.log(JWT_SECRET)
         const authtoken = jwt.sign(data, JWT_SECRET);
         success = true;
         res.json({ authtoken: authtoken, success: true });

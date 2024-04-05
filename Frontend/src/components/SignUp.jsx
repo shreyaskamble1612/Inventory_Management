@@ -79,7 +79,7 @@ const SignUpComp = () => {
               required={true}
               type={"text"}
               minLength={5}
-              maxLength={10}
+              maxLength={30}
             ></input>
           </div>
           <div className="my-5">
