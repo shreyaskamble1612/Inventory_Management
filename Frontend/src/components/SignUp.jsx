@@ -22,7 +22,7 @@ const SignUpComp = () => {
     let alert = document.getElementById("alert");
     try {
       e.preventDefault();
-      const response = await fetch("http://localhost:5000/api/user/registerUser", {
+      const response = await fetch("https://inventory-management-x54z.onrender.com/api/user/registerUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
