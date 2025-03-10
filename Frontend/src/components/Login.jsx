@@ -89,12 +89,13 @@ const LoginComp = () => {
         </div>
         <div className="flex items-center justify-between">
           <div className="text-sm text-right w-full">
-            <a
+            <Link
+              to={"/forgotpassword"}
               href="#"
               className="font-medium text-blue-600 hover:text-blue-500 w-full"
             >
               Forgot your password?
-            </a>
+            </Link>
           </div>
         </div>
         <p

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "../assets/logo.png";
 import ProfileImg from "../assets/profile.png";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -13,6 +14,18 @@ const Header = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="shadow-sm bg-slate-50">
@@ -30,7 +43,10 @@ const Header = () => {
               onClick={toggleMenu}
             />
             {showMenu && (
-              <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 shadow-md rounded-lg">
+              <div
+                ref={dropdownRef}
+                className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 shadow-md rounded-lg"
+              >
                 <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Profile</div>
                 <div
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"

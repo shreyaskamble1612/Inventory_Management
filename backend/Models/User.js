@@ -23,7 +23,13 @@ const UserSchema = new Schema({
         type:Date,
         required:true,
         default:Date.now
-    }
+    },
+    resetToken:{
+        type:String,
+    },
+    resetTokenExpire:{
+        type:Date,
+    },
 })
 
 const User = mongoose.model("user",UserSchema);

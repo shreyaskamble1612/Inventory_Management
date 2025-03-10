@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 app.use("/api/user",require("./Routes/user"))
 app.use("/api/item",require("./Routes/item"))
 app.use("/api/log",require("./Routes/log"))
-
+app.use("/api/auth",require("./Routes/auth"))
 app.get("/", (req, res) => {
     res.send("Hello Shreyas")
 })
