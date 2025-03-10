@@ -11,7 +11,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 app.use(cors({
     origin:["http://localhost:5173/","https://inventory-management-x54z.onrender.com"],
-    methods:["GET","POST","PUT","DELETE"],
+    methods:["GET","POST","PUT","DELETE","OPTIONS"],
     allowedHeaders:["Content-Type","Authorization"],
     credentials:true,
 }))
