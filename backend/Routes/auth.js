@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/forgot-password", async (req, res) => {
   const { email } = req.body;
 
-  const user = await User.fineOne({ email });
+  const user = await User.findOne({ email });
   if (!user) {
     return res.status(404).send({ error: "User not found" });
   }
@@ -42,7 +42,7 @@ router.post("/reset-password/:token", async (req, res) => {
   try {
     //verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findOne({ _id: decoded.userID, resetToken: token });
+    const user = await User.findOne({ _id: decoded.id, resetToken: token });
 
     if (!user || user.resetTokenExpire < Date.now()) {
       return res.status(400).json({ message: "Invalid or expired token" });
