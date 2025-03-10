@@ -15,8 +15,9 @@ app.use(cors({
     allowedHeaders:["Content-Type","Authorization"],
     credentials:true,
 }))
-app.use(bodyParser.json())
 
+app.use(bodyParser.json())
+app.options("*",cors()) 
 app.use("/api/user",require("./Routes/user"))
 app.use("/api/item",require("./Routes/item"))
 app.use("/api/log",require("./Routes/log"))
