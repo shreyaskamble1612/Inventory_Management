@@ -2,7 +2,7 @@ import React, { useState ,useContext} from "react";
 import itemContext from "../Context/ItemContext";
 
 const DecreaseQuantity = ({ id ,close}) => {
-  const baseurl = "https://inventory-management-x54z.onrender.com/api/";
+  const baseurl = "http://localhost:5000/api/";
 
   const context = useContext(itemContext)
   const {addItem,getItems,items} = context

@@ -4,7 +4,7 @@ import itemContext from "../Context/ItemContext";
 const IncreaseQuantity = ({ close,id }) => {
     const context = useContext(itemContext)
   const {addItem,getItems,items} = context
-  const baseurl = "https://inventory-management-x54z.onrender.com/api/";
+  const baseurl = "http://localhost:5000/api/";
 
   const [formData, setFormData] = useState({
     quantity: 0,

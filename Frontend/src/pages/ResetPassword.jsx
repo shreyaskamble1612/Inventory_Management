@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`https://inventory-management-x54z.onrender.com/api/auth/reset-password/${token}`, { newPassword });
+      const { data } = await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, { newPassword });
 
       setMessage(data.message);
       setTimeout(() => navigate("/login"), 3000); // Redirect to login after success

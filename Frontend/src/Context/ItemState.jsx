@@ -2,7 +2,7 @@ import { useState } from "react";
 import itemContext from "./ItemContext";
 
 const ItemState = (props) => {
-  const baseurl = "https://inventory-management-x54z.onrender.com/api/";
+  const baseurl = "https://localhost:5000/api/";
   const [items, setItems] = useState([]);
 
   const [totalProducts, setTotalProducts] = useState(0);

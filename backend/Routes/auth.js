@@ -29,7 +29,7 @@ router.post("/forgot-password", async (req, res) => {
   const resetLink = `${process.env.CLIENT_URL}/resete-password/${token}`;
   const message = `<p>Click <a href="${resetLink}">here</a> to reset you password. The link is valid for 10 minutes</p>`;
 
-  await sendEmail(user.email, "Password Reser", message);
+  await sendEmail(user.email, "Password Reset", message);
 
   res.json({ message: "Password reset link send to email" });
 });

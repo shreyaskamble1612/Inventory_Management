@@ -9,8 +9,15 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("https://inventory-management-x54z.onrender.com/api/auth/forgot-password", { email });
 
+      const response = await fetch("http://localhost:5000/api/auth/forgot-password", {  
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json(); 
       setMessage(data.message);
     } catch (error) {
       setMessage(error.response?.data?.message || "Something went wrong");
