@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
+// ✅ Apply CORS Middleware Correctly
 app.use(
   cors({
     origin: [
@@ -17,19 +18,26 @@ app.use(
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authtoken"],
-    credentials: true,
+    credentials: true, // Required if using cookies/auth headers
   })
 );
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-});
+
+// ❌ Remove the conflicting manual CORS header
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   next();
+// });
+
 app.use(bodyParser.json());
+
+// ✅ Ensure OPTIONS requests are handled correctly
 app.options("*", cors());
+
 app.use("/api/user", require("./Routes/user"));
 app.use("/api/item", require("./Routes/item"));
 app.use("/api/log", require("./Routes/log"));
 app.use("/api/auth", require("./Routes/auth"));
+
 app.get("/", (req, res) => {
   res.send("Welcome to Inventory Management");
 });
