@@ -16,7 +16,7 @@ app.use(
       "https://inventory-management-x54z.onrender.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authtoken"],
     credentials: true,
   })
 );

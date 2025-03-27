@@ -18,6 +18,7 @@ const DecreaseQuantity = ({ id ,close}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("clicked")
       const response = await fetch(baseurl + "log/decreaseQuantity/"+id, {
         method: "POST",
         headers: {
