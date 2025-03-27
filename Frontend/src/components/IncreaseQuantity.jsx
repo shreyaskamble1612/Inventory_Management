@@ -4,7 +4,7 @@ import itemContext from "../Context/ItemContext";
 const IncreaseQuantity = ({ close,id }) => {
     const context = useContext(itemContext)
   const {addItem,getItems,items} = context
-  const baseurl = "http://localhost:5000/api/";
+  const baseurl = `${import.meta.env.VITE_API_URL}/`
 
   const [formData, setFormData] = useState({
     quantity: 0,

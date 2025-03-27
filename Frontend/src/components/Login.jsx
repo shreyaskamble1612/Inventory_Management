@@ -17,7 +17,7 @@ const LoginComp = () => {
     let alert = document.getElementById("alert");
     try {
       e.preventDefault();
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

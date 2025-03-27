@@ -22,7 +22,7 @@ const SignUpComp = () => {
     let alert = document.getElementById("alert");
     try {
       e.preventDefault();
-      const response = await fetch("http://localhost:5000/api/user/registerUser", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/user/registerUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
