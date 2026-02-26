@@ -1,0 +1,57 @@
+# Maven build files
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Log files
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+
+# Build output
+bin/
+out/
+dist/
+
+# Dependencies
+.m2/
+node_modules/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE files
+.classpath
+.project
+.settings/
+
+# Spring Boot
+.springBeans
+.sts4-cache
