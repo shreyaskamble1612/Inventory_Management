@@ -1,0 +1,13 @@
+package com.inventorymanagement.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class QuantityRequest {
+    private Integer quantity;
+    private String description;
+}
